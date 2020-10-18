@@ -1,0 +1,46 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body,
+#root {
+  width: 100%;
+  height: 100vh;
+  font-family: "Roboto";
+}
+
+#root {
+  display: grid;
+  grid-template-columns: 60px auto;
+}
+
+.side-nav ul {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #1a1a1a;
+}
+
+.side-nav li {
+  padding: 10px 0;
+}
+
+.side-nav li:hover {
+  background-color: #404040;
+}
+
+.side-nav li a {
+  color: white;
+  text-decoration: none;
+}
+
+.main-conent {
+  background: #333333;
+  width: 100%;
+  height: 100%;
+}
