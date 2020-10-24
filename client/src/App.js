@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
@@ -19,28 +19,32 @@ const theme = createMuiTheme({
   },
 });
 
-export default () => {
-  return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <nav className="side-nav">
-          <SideBar />
-        </nav>
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <ThemeProvider theme={theme}>
+          <nav className="side-nav">
+            <SideBar />
+          </nav>
 
-        <main className="main-conent">
-          <Switch>
-            <Route path="/find">
-              <FindPage />
-            </Route>
-            <Route path="/manage">
-              <ManagePage />
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
-        </main>
-      </ThemeProvider>
-    </Router>
-  );
-};
+          <main className="main-conent">
+            <Switch>
+              <Route path="/find">
+                <FindPage />
+              </Route>
+              <Route path="/manage">
+                <ManagePage />
+              </Route>
+              <Route path="/">
+                <HomePage />
+              </Route>
+            </Switch>
+          </main>
+        </ThemeProvider>
+      </Router>
+    );
+  }
+}
+
+export default App;

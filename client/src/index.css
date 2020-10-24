@@ -61,3 +61,19 @@ body,
   width: 80%;
   max-width: 800px;
 }
+
+/* --------------Animations--------------- */
+.flipper,
+.progressIndicator {
+  animation: flipY 2s infinite;
+}
+
+@keyframes flipY {
+  from {
+    -webkit-transform: rotateY(180deg);
+  }
+
+  to {
+    -webkit-transform: rotateY(-180deg);
+  }
+}

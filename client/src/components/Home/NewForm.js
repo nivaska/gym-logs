@@ -11,6 +11,7 @@ import IconButton from "@material-ui/core/IconButton";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import NewLog from "./NewLog";
+import { formatDateToStr } from "../../utils";
 
 const styles = (theme) => ({
   newFormCotnainer: {
@@ -44,8 +45,7 @@ class NewForm extends Component {
     super(props);
     this.state = {
       IsNewLog: props.IsNewLog,
-      LogDate: props.LogDate,
-
+      LogDate: props.LogDate || formatDateToStr(new Date()),
       ExerciseLogs: [],
     };
   }
@@ -54,7 +54,14 @@ class NewForm extends Component {
     this.setState({
       ExerciseLogs: [
         ...this.state.ExerciseLogs,
-        { exercise: "", count: "", rep: "" },
+        {
+          IsSaved: false,
+          LogId: null,
+          Exercise: "0",
+          LogDate: this.state.LogDate,
+          Weight: "",
+          Count: "",
+        },
       ],
     });
   }
@@ -66,6 +73,7 @@ class NewForm extends Component {
       return (
         <NewLog
           index={index}
+          LogDate={this.state.LogDate}
           exercise={log.exercise}
           count={log.count}
           rep={log.rep}
@@ -73,7 +81,6 @@ class NewForm extends Component {
       );
     });
 
-    console.log(logs);
     return (
       <div className={classes.newFormCotnainer}>
         <Accordion className={classes.accordion}>
@@ -83,12 +90,16 @@ class NewForm extends Component {
                 id="date"
                 label="Select Date"
                 type="date"
-                defaultValue="2017-05-24"
                 classes={{
                   root: classes.dateInput,
                 }}
                 InputLabelProps={{
                   shrink: true,
+                }}
+                defaultValue={this.state.LogDate}
+                // value={this.state.LogDate}
+                onChange={(e) => {
+                  this.setState({ LogDate: e.target.value });
                 }}
               />
             </FormGroup>

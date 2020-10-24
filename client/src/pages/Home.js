@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Button from "@material-ui/core/Button";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import NewForm from "../components/Home/NewForm";
+import { fetchAllExercises } from "../redux/actions";
 
 class HomePage extends Component {
   constructor(props) {
@@ -11,6 +13,11 @@ class HomePage extends Component {
       enableNewLogForm: false,
     };
   }
+
+  componentDidMount() {
+    this.props.fetchAllExercises();
+  }
+
   render() {
     const newForm = this.state.enableNewLogForm ? <NewForm /> : null;
 
@@ -34,4 +41,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+export default connect(mapStateToProps, { fetchAllExercises })(HomePage);
